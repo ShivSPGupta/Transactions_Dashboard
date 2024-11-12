@@ -152,6 +152,34 @@ app.get('/api/transactions/price-range', async (req, res) => {
   }
 });
 
+//Pie Chart Category
+app.get('/api/transactions/categories', async (req, res) => {
+  try {
+    const { month } = req.query;
+    const monthNumber = monthNameToNumber(month); // Convert month name to correct month number
+
+    // Fetch transactions for the specified month
+    const transactions = await Transaction.find({
+      dateOfSale: { $exists: true },
+      $expr: { $eq: [{ $month: "$dateOfSale" }, monthNumber] }
+    });
+
+    // Calculate category counts
+    const categoryCounts = transactions.reduce((counts, transaction) => {
+      if (transaction.category) {
+        counts[transaction.category] = (counts[transaction.category] || 0) + 1;
+      }
+      return counts;
+    }, {});
+
+    // Return category count data for the pie chart
+    res.json(categoryCounts);
+  } catch (error) {
+    console.error('Error fetching category statistics:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

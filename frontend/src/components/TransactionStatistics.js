@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './TransactionStatistics.css'
 
 const TransactionStatistics = ({ selectedMonth }) => {
   const [stats, setStats] = useState({

@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import TransactionStatistics from './TransactionStatistics';
 import TransactionBarChart from './TransactionBarChart';
 import TransactionTable from './TransactionTable';
+import './MainDashboard.css'
+import TransactionPieChart from './TransactionPieChart';
+
+
 const MainDashboard = () => {
   const [selectedMonth, setSelectedMonth] = useState('March'); // Default month
   
@@ -34,6 +38,7 @@ const MainDashboard = () => {
       <TransactionTable selectedMonth={selectedMonth}/>
       <TransactionStatistics selectedMonth={selectedMonth} />
       <TransactionBarChart selectedMonth={selectedMonth} />
+      <TransactionPieChart selectedMonth={selectedMonth}/>
     </div>
   );
 };

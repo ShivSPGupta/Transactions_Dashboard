@@ -1,0 +1,15 @@
+   #month{
+    background-color: #ffd966;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+   } 
+
+   h2{
+    background-color: #c9fafa;
+    padding: 20px 20px;
+    border-radius: 50px;
+   }

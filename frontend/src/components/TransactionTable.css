@@ -2,8 +2,8 @@
     text-align: center;
     background-color: #e8f4f8;
     padding: 20px;
-    border-radius: 10px;
-    width: 600px;
+    border-radius: 20px;
+    width: auto;
     margin: auto;
   }
   
@@ -20,7 +20,7 @@
   }
   
   .search-btn,
-  .month-selector button {
+   button {
     background-color: #ffd966;
     border: none;
     padding: 10px 20px;
@@ -29,15 +29,7 @@
     cursor: pointer;
   }
   
-  .month-selector {
-    display: flex;
-    align-items: center;
-  }
-  
-  .dropdown-arrow {
-    margin-left: 5px;
-    font-size: 0.8rem;
-  }
+
   
   .transaction-table {
     width: 100%;

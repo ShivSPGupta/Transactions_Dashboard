@@ -1,0 +1,6 @@
+.bar-chart-box {
+    width: 100%;  /* Set the desired width */
+    height: 100%; /* Set the desired height */
+     margin: 10px auto; /*Center the chart horizontally */
+     background-color: #e7f4fa;
+  }

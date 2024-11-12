@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
+import './TransactionBarChart.css';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -20,6 +21,8 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
+
 
 const TransactionBarChart = ({ selectedMonth }) => {
   const [priceRangeData, setPriceRangeData] = useState([]);

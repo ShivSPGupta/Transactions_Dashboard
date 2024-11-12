@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import './TransactionTable.css';
+import './TransactionTable.css';
 
 const TransactionTable = ({selectedMonth}) => {
   const [transactions, setTransactions] = useState([]);
@@ -32,6 +32,7 @@ const TransactionTable = ({selectedMonth}) => {
       <div className="transaction-controls">
         <input 
           type="text" 
+          className='search-btn'
           placeholder="Search transaction" 
           value={search}
           onChange={(e) => setSearch(e.target.value)} 
@@ -64,10 +65,10 @@ const TransactionTable = ({selectedMonth}) => {
         </tbody>
       </table>
       <div className="pagination">
-        <button onClick={() => setPage(page > 1 ? page - 1 : 1)}>Previous</button>
         <span>Page No: {page}</span>
-        <span>PerPage: {perPage}</span>
+        <button onClick={() => setPage(page > 1 ? page - 1 : 1)}>Previous</button>
         <button onClick={() => setPage(page + 1)}>Next</button>
+        <span>PerPage: {perPage}</span>
       </div>
     </div>
   );
