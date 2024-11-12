@@ -1,42 +1,39 @@
 import React, { useState } from 'react';
 import TransactionStatistics from './TransactionStatistics';
 import TransactionBarChart from './TransactionBarChart';
-
+import TransactionTable from './TransactionTable';
 const MainDashboard = () => {
-  const [selectedMonth, setSelectedMonth] = useState('March');
-
-  const monthMap = {
-    January: 0,
-    February: 1,
-    March: 2,
-    April: 3,
-    May: 4,
-    June: 5,
-    July: 6,
-    August: 7,
-    September: 8,
-    October: 9,
-    November: 10,
-    December: 11,
-  };
+  const [selectedMonth, setSelectedMonth] = useState('March'); // Default month
   
 
-  const handleMonthChange = (e) => {
-    setSelectedMonth(e.target.value);
+  const handleMonthChange = (event) => {
+    setSelectedMonth(event.target.value);
   };
 
   return (
     <div>
-      <select onChange={handleMonthChange} value={selectedMonth}>
-        {Object.keys(monthMap).map((month) => (
-          <option key={month} value={month}>
-            {month}
-          </option>
-        ))}
-      </select>
-
-      <TransactionStatistics selectedMonth={monthMap[selectedMonth]} />
-      <TransactionBarChart selectedMonth={monthMap[selectedMonth]} />
+      <h2>Transaction Dashboard</h2>
+      
+      <div>
+        <label htmlFor="month">Select Month: </label>
+        <select id="month" value={selectedMonth} onChange={handleMonthChange}>
+          <option value="January">January</option>
+          <option value="February">February</option>
+          <option value="March">March</option>
+          <option value="April">April</option>
+          <option value="May">May</option>
+          <option value="June">June</option>
+          <option value="July">July</option>
+          <option value="August">August</option>
+          <option value="September">September</option>
+          <option value="October">October</option>
+          <option value="November">November</option>
+          <option value="December">December</option>
+        </select>
+      </div>
+      <TransactionTable selectedMonth={selectedMonth}/>
+      <TransactionStatistics selectedMonth={selectedMonth} />
+      <TransactionBarChart selectedMonth={selectedMonth} />
     </div>
   );
 };

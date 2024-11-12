@@ -1,36 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './TransactionTable.css';
+// import './TransactionTable.css';
 
-const TransactionTable = () => {
+const TransactionTable = ({selectedMonth}) => {
   const [transactions, setTransactions] = useState([]);
   const [page, setPage] = useState(1);
   const [perPage] = useState(10);
   const [search, setSearch] = useState('');
-  const [month, setMonth] = useState('March');
 
-  const monthMap = {
-    January: 0,
-    February: 1,
-    March: 2,
-    April: 3,
-    May: 4,
-    June: 5,
-    July: 6,
-    August: 7,
-    September: 8,
-    October: 9,
-    November: 10,
-    December: 11,
-  };
-  const monthValue = month ? monthMap[month] : null;
   
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
         
         const response = await axios.get('http://localhost:5000/api/transactions', {
-          params: { page, perPage, search, month:monthValue  },
+          params: { page, perPage, search, month:selectedMonth  },
         });
         setTransactions(response.data.transactions);
       } catch (error) {
@@ -39,12 +23,12 @@ const TransactionTable = () => {
     };
   
     fetchTransactions();
-  }, [page, perPage, search, month, monthValue]);
+  }, [page, perPage, search, selectedMonth]);
   
 
   return (
     <div className="transaction-table-container">
-      <h3>Transaction Dashboard</h3>
+
       <div className="transaction-controls">
         <input 
           type="text" 
@@ -52,12 +36,6 @@ const TransactionTable = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)} 
         />
-        <select onChange={(e) => setMonth(e.target.value)} value={month}>
-          <option value="">Select Month</option>
-          {["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].map((m) => (
-            <option key={m} value={m}>{m}</option>
-          ))}
-        </select>
       </div>
       <table className="transaction-table">
         <thead>
@@ -88,6 +66,7 @@ const TransactionTable = () => {
       <div className="pagination">
         <button onClick={() => setPage(page > 1 ? page - 1 : 1)}>Previous</button>
         <span>Page No: {page}</span>
+        <span>PerPage: {perPage}</span>
         <button onClick={() => setPage(page + 1)}>Next</button>
       </div>
     </div>
